@@ -178,7 +178,7 @@ function uniqueShortId(used: Set<string>): string {
 // HTML cleaning
 // ---------------------------------------------------------------------------
 
-function cleanHtml(raw: string): string {
+export function cleanHtml(raw: string): string {
   const $ = cheerio.load(raw, { decodeEntities: false });
 
   // 1. Remove <style> blocks
@@ -247,7 +247,7 @@ function cleanHtml(raw: string): string {
 // HTTP fetch helper
 // ---------------------------------------------------------------------------
 
-async function fetchUrl(url: string): Promise<string> {
+export async function fetchUrl(url: string): Promise<string> {
   const response = await fetch(url, {
     redirect: "follow",
     headers: {
