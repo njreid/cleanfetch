@@ -4,9 +4,9 @@ const URLS: Array<{ label: string; url: string }> = [
   { label: "Wikipedia (random)", url: "https://en.wikipedia.org/wiki/Special:Random" },
   { label: "BBC News",           url: "https://www.bbc.com/news" },
   { label: "Ars Technica",       url: "https://arstechnica.com" },
-  { label: "Vercel",             url: "https://vercel.com" },
   { label: "The Verge",          url: "https://www.theverge.com" },
   { label: "Zillow",             url: "https://www.zillow.com" },
+  { label: "NY Times",           url: "https://www.nytimes.com" },
 ];
 
 function kb(bytes: number): string {
