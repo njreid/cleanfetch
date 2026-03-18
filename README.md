@@ -48,11 +48,39 @@ To disable the built-in `WebFetch` so Claude uses `CleanWebFetch` exclusively, a
 
 Claude will then fall back to `CleanWebFetch` automatically when it needs to fetch a URL.
 
-### Setup
+### Install
+
+One-liner for Mac, Linux, and WSL (requires `node` ≥ 18 and `git`):
 
 ```bash
-npm install
-npm run build
+git clone https://github.com/njreid/cleanfetch.git ~/.claude/tools/cleanfetch && cd ~/.claude/tools/cleanfetch && npm install && npm run build && python3 -c "
+import json, pathlib
+p = pathlib.Path.home() / '.claude' / '.mcp.json'
+d = json.loads(p.read_text()) if p.exists() else {}
+d.setdefault('mcpServers', {})['clean-web-fetch'] = {'command': 'node', 'args': [str(pathlib.Path.home() / '.claude' / 'tools' / 'cleanfetch' / 'dist' / 'index.js')]}
+p.write_text(json.dumps(d, indent=2))
+print('Installed. Restart Claude Code to activate CleanWebFetch.')
+"
+```
+
+Then restart Claude Code to pick up the new server.
+
+To block the built-in `WebFetch` and use `CleanWebFetch` exclusively, also add to `~/.claude/settings.json`:
+
+```json
+{
+  "permissions": {
+    "deny": ["WebFetch"]
+  }
+}
+```
+
+### Manual setup
+
+```bash
+git clone https://github.com/njreid/cleanfetch.git
+cd cleanfetch
+npm install && npm run build
 ```
 
 Add to `~/.claude/.mcp.json`:
@@ -62,7 +90,7 @@ Add to `~/.claude/.mcp.json`:
   "mcpServers": {
     "clean-web-fetch": {
       "command": "node",
-      "args": ["/path/to/claudetools/dist/index.js"]
+      "args": ["/path/to/cleanfetch/dist/index.js"]
     }
   }
 }
