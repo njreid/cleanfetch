@@ -2,6 +2,7 @@ import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { z } from "zod";
 import * as cheerio from "cheerio";
+import { isGeneratedClassName } from "./word-check.js";
 
 // ---------------------------------------------------------------------------
 // Tailwind detection
@@ -147,7 +148,7 @@ function isTailwind(cls: string): boolean {
 function filterClasses(classAttr: string): string {
   return classAttr
     .split(/\s+/)
-    .filter((c) => c.length > 0 && !isTailwind(c))
+    .filter((c) => c.length > 0 && !isTailwind(c) && !isGeneratedClassName(c))
     .join(" ");
 }
 
