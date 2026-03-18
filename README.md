@@ -1,7 +1,3 @@
-# claudetools
-
-Custom MCP tools for Claude Code.
-
 ## CleanWebFetch
 
 A drop-in alternative to Claude's built-in `WebFetch` that strips visual noise before the HTML ever hits your context window.
@@ -103,3 +99,7 @@ Restart Claude Code to pick up the new server.
 ```bash
 npm test   # fetches the benchmark sites and prints a before/after size table
 ```
+
+Interested in some semi-structured thoughts about how best to think about launching agentic and LLM-backed projects?
+
+[Agentic Wrestl.ing](https://agenticwrestl.ing/)
